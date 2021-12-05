@@ -28,8 +28,8 @@ public class ToFileChatClient implements ChatClient{
 
         this.chatDataFileOperations = chatDataFileOperations;
 
-        readMessageFromFile();
-        readUsersFromFile();
+       // readMessageFromFile();
+       // readUsersFromFile();
 
     }
     @Override
@@ -104,14 +104,14 @@ public class ToFileChatClient implements ChatClient{
     private void writeMessagesToFile(){
         chatDataFileOperations.writeMessages(messages);
     }
-    private void readMessageFromFile(){
+   /* private void readMessageFromFile(){
         messages = chatDataFileOperations.readMessages();
-    }
+    }*/
     private void writeUsersToFile(){
         chatDataFileOperations.writeUsers(loggedUsers);
     }
-    private void readUsersFromFile(){
+    /*private void readUsersFromFile(){
         loggedUsers = chatDataFileOperations.readUsers();
-    }
+    }*/
 
 }

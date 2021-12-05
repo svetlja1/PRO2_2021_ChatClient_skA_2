@@ -4,6 +4,7 @@ import czk.uhk.pro2.gui.MainFrame;
 import czk.uhk.pro2.models.*;
 import czk.uhk.pro2.models.chatFileOperations.ChatDataFileOperations;
 import czk.uhk.pro2.models.chatFileOperations.CsvChatFileOperations;
+import czk.uhk.pro2.models.chatFileOperations.XmlChatFileOperations;
 
 public class Main {
 
@@ -14,7 +15,7 @@ public class Main {
         ChatDataFileOperations chatDataFileOperations;
         ChatClient chatClient;
 
-        chatDataFileOperations = new CsvChatFileOperations();
+        chatDataFileOperations = new XmlChatFileOperations();
         chatClient = new ToFileChatClient(chatDataFileOperations);
 
         MainFrame mainFrame = new MainFrame(800,600, chatClient);
