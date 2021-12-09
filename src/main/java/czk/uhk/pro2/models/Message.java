@@ -6,6 +6,7 @@ public class Message {
     private String text;
     private LocalDateTime created;
 
+
     public static final int USER_LOGGED_IN = 1;
     public static final int USER_LOGGED_OUT = 2;
 
@@ -33,6 +34,8 @@ public class Message {
         this.text = text;
         this.created = created;
     }
+
+
 
     public String getAuthor() {
         return author;

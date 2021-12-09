@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import czk.uhk.pro2.models.Message;
+import czk.uhk.pro2.models.MessageJson;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -43,6 +44,7 @@ public class JsonChatFileOperations implements ChatDataFileOperations {
 
     @Override
     public void writeMessages(List<Message> messages) {
+
         String jsonText = gson.toJson(messages);
         try{
             FileWriter writer = new FileWriter(MESSAGE_FILE);

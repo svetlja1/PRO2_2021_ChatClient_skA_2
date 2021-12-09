@@ -15,8 +15,9 @@ public class Main {
         ChatDataFileOperations chatDataFileOperations;
         ChatClient chatClient;
 
-        chatDataFileOperations = new XmlChatFileOperations();
-        chatClient = new ToFileChatClient(chatDataFileOperations);
+        //chatDataFileOperations = new XmlChatFileOperations();
+        //chatClient = new ToFileChatClient(chatDataFileOperations);
+        chatClient = new WebChatClient();
 
         MainFrame mainFrame = new MainFrame(800,600, chatClient);
         mainFrame.setVisible(true);

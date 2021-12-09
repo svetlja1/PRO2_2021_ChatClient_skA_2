@@ -13,6 +13,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class WebChatClient implements ChatClient{
     private String loggedUser;
     private List<Message> messages;
+    private List<MessageJson> messagesJson;
     private List<String> loggedUsers;
     private String token;
 
@@ -32,6 +34,7 @@ public class WebChatClient implements ChatClient{
         gson = new Gson();
         messages = new ArrayList<>();
         loggedUsers = new ArrayList<>();
+        messagesJson = new ArrayList<>();
 
         Runnable refreshLoggedUsersRun = () -> {
             Thread.currentThread().setName("RefreshLoggedUsers");
@@ -196,7 +199,13 @@ public class WebChatClient implements ChatClient{
                 String resultJson = null;
                 resultJson = EntityUtils.toString(response.getEntity());
 
-                messages = gson.fromJson(resultJson,new TypeToken<ArrayList<Message>>(){}.getType());
+                messagesJson = gson.fromJson(resultJson,new TypeToken<ArrayList<MessageJson>>(){}.getType());
+                for(int i=0;i<messagesJson.size();i++){
+                        String created = messagesJson.get(i).getCreated();
+                        created = created.substring(0, created.length()-6);
+                        messages.add(new Message(messagesJson.get(i).getAuthor(), messagesJson.get(i).getText(), LocalDateTime.parse(created)));
+
+                }
                 raiseEventMessageUpdated();
             }
         }
